@@ -1,0 +1,18 @@
+{
+    "category": [{
+        "name": "Beginner",
+        "img": "",
+        "packages": [{
+            "name": "16-8 fasting",
+            "skip": "skip dinner",
+            "fasting_start": 16,
+            "fasting_end": 8,
+            "type": "hour",
+            "fasting_hrs": 16,
+            "eating_hrs": 8,
+            "description": "description",
+            "img": "http://fstream.in/wellness/Packs/w-keto-diet-p.png",
+            "gradient": ["#fff", "#000"]
+        }]
+    }]
+}
