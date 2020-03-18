@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="src/css/style.css">
     <title>Console App</title>
 </head>
 
@@ -19,50 +19,51 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Apps</a>
-                <a class="nav-item nav-link" href="#">Categories</a>
-                <a class="nav-item nav-link" href="#">Packages</a>
+                <a class="nav-item nav-link" id="nav-app" href="#">Apps</a>
+                <a class="nav-item nav-link" id="nav-cat" href="#">Categories</a>
+                <a class="nav-item nav-link" id="nav-pck" href="#">Packages</a>
             </div>
         </div>
     </nav>
 
     <div class="container">
 
-        <div class="apps">
+        <!--
+        <div class="apps" style="padding: 2rem 2rem">
             <div>
+                <h3 style="display: inline">Apps</h3>
                 <button type="button" class="btn btn-info">New App</button>
                 <button type="button" class="btn btn-info">Clear View</button>
             </div>
 
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">App Name</h4>
+                    <p class="card-title">App Name</p>
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                         <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
                     </div>
-                    <p class="card-text">Content</p>
                     <span>
                         <button type="button" class="btn btn-outline-secondary btn-sm">View Categories</button>
                     </span>
                 </div>
             </div>
         </div>
-
-        <div class="categories">
+        
+        <div class="categories" style="padding: 2rem 2rem">
             <div>
+                <h3 style="display: inline">Categories</h3>
                 <button type="button" class="btn btn-info">New Category</button>
                 <button type="button" class="btn btn-info">Clear View</button>
             </div>
 
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Category Name</h4>
+                    <p class="card-title">Category Name</p>
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                         <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
                     </div>
-                    <p class="card-text">Content</p>
                     <span>
                         <button type="button" class="btn btn-outline-secondary btn-sm">View Packages</button>
                     </span>
@@ -70,24 +71,99 @@
             </div>
         </div>
 
-        <div class="packages">
+        <div class="packages" style="padding: 2rem 2rem">
             <div>
+                <h3 style="display: inline">Packages</h3>
                 <button type="button" class="btn btn-info">New Package</button>
                 <button type="button" class="btn btn-info">Clear View</button>
             </div>
 
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Package Name</h4>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                    <p class="card-title">Package Name</p>
+
+                    <div class="new-package">
+                        <div class="row">
+                            <div class="input-group col-md-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Name</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="16-8 fasting dinner" id="pckName" required>
+                            </div>
+                            <div class="input-group col-md-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Skip</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="skip dinner" id="pckSkip" required>
+                            </div>
+                            <div class="input-group col-md-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Fasting Start</span>
+                                </div>
+                                <input type="number" class="form-control" placeholder="16" id="pckFastingStart" required>
+                            </div>
+                            <div class="input-group col-md-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Fasting End</span>
+                                </div>
+                                <input type="number" class="form-control" placeholder="8" id="pckFastingEnd" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-group col-md-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Type</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="hour" id="pckType" required>
+                            </div>
+                            <div class="input-group col-md-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Description</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="description" id="pckDesc" required>
+                            </div>
+                            <div class="input-group col-md-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Fasting Hours</span>
+                                </div>
+                                <input type="number" class="form-control" placeholder="16" id="pckFastingHrs" required>
+                            </div>
+                            <div class="input-group col-md-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Eating Hours</span>
+                                </div>
+                                <input type="number" class="form-control" placeholder="8" id="pckEatingHrs" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-group col-md-6">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Image URL</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="https://www.example.com/image_url.jpg/" id="pckImgUrl" required>
+                            </div>
+                            <div class="input-group col-md-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Gradient #1</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="#fff" id="pckGradient1" required>
+                            </div>
+                            <div class="input-group col-md-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Gradient #2</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="#000" id="pckGradient2" required>
+                            </div>
+                        </div>
+
+                        <button class="btn-primary btn-sm" id="pckSubmit">Submit</button>
                     </div>
-                    <p class="card-text">Content</p>
                 </div>
             </div>
         </div>
-
+    -->
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
