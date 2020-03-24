@@ -3,8 +3,7 @@
 const catMarkup = `<div class="categories" style="padding: 2rem 2rem">
     <div class="cat-btn-ctnr">
         <h3 style="display: inline">Categories</h3>
-        <button type="button" class="btn btn-info" id="new-cat-btn">New Category</button>
-        <button type="button" class="btn btn-info" id="list-cat-btn">List Categories</button>
+        <button type="button" class="btn btn-outline-primary" id="new-cat-btn">New Category <i class="fa fa-plus" aria-hidden="true"></i></button>
     </div>
         <div class="category-container">
         
@@ -24,7 +23,7 @@ const catInputMarkup = `<div class="card w-80">
             <div class="input-group-prepend">
                 <span class="input-group-text">Image URL</span>
             </div>
-            <input type="text" class="form-control" placeholder="www.example.com/image.jpg" id="catImgUrl" required>
+            <input type="text" class="form-control" placeholder="www.sample_url.com/image.jpg" id="catImgUrl" required>
         </div>
     </div>
 
@@ -40,7 +39,7 @@ const catInputMarkup = `<div class="card w-80">
         </div>
 
         <div class="input-group col-md-6">    
-            <div class="input-group-prepend">
+            <div>
                 <button class="btn-primary btn-sm" id="catSubmit">Submit</button>
             </div>
         </div>
@@ -53,8 +52,7 @@ const catInputMarkup = `<div class="card w-80">
 const pckMarkup = `<div class="packages" style="padding: 2rem 2rem">
     <div class="pck-btn-ctnr">
         <h3 style="display: inline">Packages</h3>
-        <button type="button" class="btn btn-info" id="new-pck-btn">New Package</button>
-        <button type="button" class="btn btn-info" id="list-pck-btn">List Packages</button>
+        <button type="button" class="btn btn-outline-primary" id="new-pck-btn">New Package <i class="fa fa-plus" aria-hidden="true"></i></button>
     </div>
         <div class="package-container">
 
@@ -122,7 +120,7 @@ const pckInputMarkup = `<div class="card w-80">
         <div class="input-group-prepend">
             <span class="input-group-text">Image URL</span>
         </div>
-        <input type="text" class="form-control" placeholder="https://www.example.com/image_url.jpg/" id="pckImgUrl" required>
+        <input type="text" class="form-control" placeholder="https://www.example_url.com/image.jpg/" id="pckImgUrl" required>
     </div>
     <div class="input-group col-md-3">
         <div class="input-group-prepend">
@@ -138,8 +136,8 @@ const pckInputMarkup = `<div class="card w-80">
     </div>
 </div>
 
-<div class="input-group-preend">
-<button class="btn-primary btn-sm" id="pckSubmit">Submit</button>
+<div>
+    <button class="btn-primary btn-sm" id="pckSubmit">Submit</button>
 </div>
 </div>
 </div>`;
@@ -153,7 +151,8 @@ const loaderMarkup = `<div class="d-flex justify-content-center m-5">
 const elements = {
     container: document.querySelector('.container'),
     navCat: document.getElementById("nav-cat"),
-    navPck: document.getElementById("nav-pck")
+    navPck: document.getElementById("nav-pck"),
+    HomePg: document.getElementById("home-pg")
 };
 
 const addLoader = () => {
@@ -161,16 +160,14 @@ const addLoader = () => {
     elements.container.insertAdjacentHTML('afterbegin', loaderMarkup);
 }
 
-const clearLoader = () => { elements.container.innerHTML = ''; }
-
 let apiUrls = {
     getAllCat: "category",
     newCat: "category",
-    delCat: "category/",
+    delCat: "category",
     updateCat: "category",
     getAllPck: "package",
     newPck: "package",
-    delPck: "package/",
+    delPck: "package",
     updatePck: "package"
 }
 
@@ -193,28 +190,30 @@ const renderCatPage = (container) => {
         document.querySelector('.category-container').innerHTML = '';
         document.querySelector('.category-container').insertAdjacentHTML('beforeend', catInputMarkup);
 
-        if (packageList.length > 0) {
-            packageList.forEach(renderDropdownItems);
-        } else {
-            const blankMarkup = `<p class="dropdown-item">No Packages</p>`;
-            document.querySelector('.dropdown-menu').insertAdjacentHTML('beforeend', blankMarkup);
-        }
+        pckDrpDwnMenuRender();
+
         document.getElementById("catSubmit").addEventListener('click', getCategoryInput);
-    });
-
-    document.getElementById("list-cat-btn").addEventListener('click', () => {
-
-        commitRenderCat(categoryList);
-
     });
 
 }
 
-const renderDropdownItems = (pck) => {
+const pckDrpDwnMenuRender = () => {
 
-    const dropdownMarkup = `<input class="dropdown-item" type="checkbox" id="${pck.pckId}">${pck.name}</input>`
+    if (packageList.length > 0) {
+        packageList.forEach(pck => {
 
-    document.querySelector('.dropdown-menu').insertAdjacentHTML('beforeend', dropdownMarkup);
+            const dropdownMarkup = `
+            <div class="dropdown-item"><input class="dropdown-items" type="checkbox" id="${pck.pckId}">
+            <label for="${pck.pckId}">${pck.name}</label>
+            </div>`;
+            document.querySelector('.dropdown-menu').insertAdjacentHTML('beforeend', dropdownMarkup);
+
+        });
+    } else {
+        const blankMarkup = `<div class="dropdown-item">No Packages</div>`;
+        document.querySelector('.dropdown-menu').insertAdjacentHTML('beforeend', blankMarkup);
+    }
+
 }
 
 const renderPckPage = (container) => {
@@ -230,40 +229,30 @@ const renderPckPage = (container) => {
 
     });
 
-    document.getElementById("list-pck-btn").addEventListener('click', () => {
-
-        commitRenderPck(packageList);
-
-    });
-
 }
 
 //--------------------------------------------
 
-const commitRenderPck = (pckList) => {
-
-    //localStorage.setItem('packageList', JSON.stringify(pckList));
+const renderPackages = (pckList) => {
 
     document.querySelector('.package-container').innerHTML = '';
 
-    pckList.forEach(renderPck);
+    pckList.forEach(renderEachPck);
 
 }
 
-const renderPck = (pck) => {
+const renderEachPck = (pck) => {
 
-    const pckDataMarkup = `<div class="card">
+    const pckDataMarkup = `<div class="card card-dis w-80">
     <div class="card-body">
-        <p class="card-title"><b>#${pck.pckId}</b> Package Name: ${pck.name}</p>
-        <p>Skip: ${pck.skip}, Fasting Start: ${pck.fasting_start}</p>
-        <p>Type: ${pck.type}, Fasting End: ${pck.fasting_end}</p>
+        <p class="card-title"><b>Package Name: ${pck.name}</b></p>
+        <p>Skip: ${pck.skip}, Type: ${pck.type}</p>
+        <p>Fasting Start: ${pck.fasting_start}, Fasting End: ${pck.fasting_end}</p>
         <p>Fasting Hrs: ${pck.fasting_hrs}, Eating Hrs: ${pck.eating_hrs}</p>
-        <p>Desc: ${pck.description}, Image URL: ${pck.img}</p>
-        <p>Gradient: ${pck.gradient}</p>
-        <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="deletePackage(${pck.pckId})">Delete</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="editPackage(${pck.pckId})">Edit</button>
-        </div>
+        <p>Description: ${pck.description}</p>
+        <p>Image URL: ${pck.img}, Gradient: #1: ${pck.gradient[0]} #2: ${pck.gradient[1]}</p>
+        <button type="button" class="btn btn-sm btn-outline-primary" onclick="editPackage(${pck.pckId})"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+        <button type="button" class="btn btn-sm btn-outline-danger" onclick="deletePackage(${pck.pckId})"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
     </div>
     </div>`
 
@@ -272,27 +261,37 @@ const renderPck = (pck) => {
 
 //--------------------------------------------
 
-const commitRenderCat = (catList) => {
-
-    //localStorage.setItem('categoryList', JSON.stringify(catList));
+const renderCategory = (catList) => {
 
     document.querySelector('.category-container').innerHTML = '';
 
-    catList.forEach(renderCat);
+    catList.forEach(renderEachCat);
 
 }
 
-const renderCat = (cat) => {
+//add pck name below "Packages included"
 
-    const catDataMarkup = `<div class="card">
+const renderEachCat = (cat) => {
+
+    let packageNames = [];
+
+    for (let k = 0; k < cat.packages.length; k++) {
+        let ID = parseInt(cat.packages[k], 10);
+        packageList.forEach(pck => {
+            if (pck.pckId === ID) {
+                packageNames.push((" " + pck.name));
+            }
+        });
+    }
+
+
+    const catDataMarkup = `<div class="card card-dis w-80">
     <div class="card-body">
-        <p class="card-title"><b>#${cat.catId}</b> Category Name: ${cat.name}, Image URL: ${cat.img}</p>
-        <p>Packages Included: ${cat.packages}</p>
-        <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="deleteCategory(${cat.catId})">Delete</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="editCategory(${cat.catId})">Edit</button>
-        </div>
-
+        <p class="card-title"><b>Category Name: ${cat.name}</b></p>
+        <p>Image URL: ${cat.img}</p>
+        <p>Packages Included: ${packageNames}</p>
+        <button type="button" class="btn btn-sm btn-outline-primary" onclick="editCategory(${cat.catId})"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+        <button type="button" class="btn btn-sm btn-outline-danger" onclick="deleteCategory(${cat.catId})"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
     </div>
     </div>`
 
@@ -301,21 +300,11 @@ const renderCat = (cat) => {
 
 //------------------------------------------
 
-
 /*
 
  Model
 
  */
-
-
-/*
-
-let categoryList = JSON.parse(localStorage.getItem('categoryList')) || [],
-   packageList = JSON.parse(localStorage.getItem('packageList')) || [];
-
- */
-
 
 // Category List from data received from API
 
@@ -325,11 +314,10 @@ const createCategoryList = (dataInput) => {
         catId: dataInput.id,
         name: dataInput.categoryName,
         img: dataInput.categoryIMG,
-        packages: dataInput.packageIDs.split(",")
+        packages: dataInput.packageIDs.split(","),
     }
 
-    categoryList.push(category);
-
+    categoryList.unshift(category);
 }
 
 // Package List from data received from API
@@ -352,75 +340,27 @@ const createPackageList = (dataInput) => {
         gradient: [packageDetails.gradient[0], packageDetails.gradient[1]]
     }
 
-    packageList.push(package);
+    packageList.unshift(package);
 }
-
-
-// To handle new data
-
-const addCategory = (categoryInput) => {
-    const category = {
-        catId: categoryList.length > 0 ? categoryList[categoryList.length - 1].catId + 1 : 1,
-        name: categoryInput.name,
-        img: categoryInput.img,
-        packages: categoryInput.packages,
-    }
-
-    //appCatMap.set(category.catId, category.appId);
-
-    categoryList.push(category);
-
-    postData(category, apiUrls.newCat);
-
-    commitRenderCat(categoryList);
-}
-
-const addPackage = (packageInput) => {
-
-    const package = {
-        pckId: packageList.length > 0 ? packageList[packageList.length - 1].pckId + 1 : 1,
-        name: packageInput.name,
-        skip: packageInput.skip,
-        fasting_start: packageInput.fasting_start,
-        fasting_end: packageInput.fasting_end,
-        type: packageInput.type,
-        fasting_hrs: packageInput.fasting_hrs,
-        eating_hrs: packageInput.eating_hrs,
-        description: packageInput.description,
-        img: packageInput.img,
-        gradient: [packageInput.gradient[0], packageInput.gradient[1]]
-    }
-
-    //catPckMap.set(package.pckId, package.catId);
-
-    packageList.push(package);
-
-    postData(package, apiUrls.newPck);
-
-    commitRenderPck(packageList);
-
-}
-
 
 // Receiving user submitted input
 
 const getCategoryInput = () => {
 
-    let catInput = {
-        catId: 0,
+    let categoryInput = {
         name: document.getElementById("catName").value,
         img: document.getElementById("catImgUrl").value,
         packages: 0 || readDropDownVal()
     };
 
-    addCategory(catInput);
+    postCatData(categoryInput, apiUrls.newCat);
 
 }
 
 const readDropDownVal = () => {
 
     let selected = new Array();
-    let checks = document.getElementsByClassName("dropdown-item");
+    let checks = document.getElementsByClassName("dropdown-items");
     for (let i = 0; i < checks.length; i++) {
         if (checks[i].checked) {
             selected.push(checks[i].id);
@@ -430,8 +370,8 @@ const readDropDownVal = () => {
 }
 
 const getPackageInput = () => {
+
     let packageInput = {
-        pckId: 0,
         name: document.getElementById("pckName").value,
         skip: document.getElementById("pckSkip").value,
         fasting_start: document.getElementById("pckFastingStart").value,
@@ -444,7 +384,7 @@ const getPackageInput = () => {
         gradient: [document.getElementById("pckGradient1").value, document.getElementById("pckGradient2").value]
     };
 
-    addPackage(packageInput);
+    postPckData(packageInput, apiUrls.newPck);
 
 }
 
@@ -452,24 +392,30 @@ const getPackageInput = () => {
 
 const deleteCategory = (id) => {
 
+    let catID = id;
+
     if (confirm("Do you want to delete this?")) {
+
+        deleteData(catID, apiUrls.delCat);
+
         categoryList = categoryList.filter(categorys => categorys.catId !== id);
 
-        deleteData(id, apiUrls.delCat);
-
-        commitRenderCat(categoryList);
+        renderCategory(categoryList);
     }
 
 }
 
 const deletePackage = (id) => {
 
+    let packID = id;
+
     if (confirm("Do you want to delete this? Deleting this package will also remove it from categories it is present.")) {
+
+        deleteData(packID, apiUrls.delPck, true);
+
         packageList = packageList.filter(packages => packages.pckId !== id);
 
-        deleteData(id, apiUrls.delPck);
-
-        commitRenderPck(packageList);
+        renderPackages(packageList);
     }
 
 }
@@ -483,12 +429,7 @@ const editCategory = (id) => {
     document.querySelector('.category-container').innerHTML = '';
     document.querySelector('.category-container').insertAdjacentHTML('beforeend', catInputMarkup);
 
-    if (packageList.length > 0) {
-        packageList.forEach(renderDropdownItems);
-    } else {
-        const blankMarkup = `<p class="dropdown-item">No Packages</p>`;
-        document.querySelector('.dropdown-menu').insertAdjacentHTML('beforeend', blankMarkup);
-    }
+    pckDrpDwnMenuRender();
 
     for (let i = 0; i < categoryList.length; i++) {
         if (id === categoryList[i].catId) {
@@ -496,17 +437,28 @@ const editCategory = (id) => {
         }
     }
 
+    let selPckIds = [];
+
+    selPckIds = categoryList[index].packages.join();
+
+    selPckIds = selPckIds.split(",");
+
     document.getElementById("catName").value = categoryList[index].name;
     document.getElementById("catImgUrl").value = categoryList[index].img;
+
+    for (let j = 0; j < selPckIds.length; j++) {
+        document.getElementById(`${selPckIds[j]}`).checked = true;
+    }
 
     document.getElementById("catSubmit").addEventListener('click', () => {
 
         categoryList[index].name = document.getElementById("catName").value;
-        categoryList.img = document.getElementById("catImgUrl").value;
-        categoryList.packages = readDropDownVal();
+        categoryList[index].img = document.getElementById("catImgUrl").value;
+        categoryList[index].packages = readDropDownVal();
 
         putData(categoryList[index], apiUrls.updateCat);
-        commitRenderCat(categoryList);
+
+        renderCategory(categoryList);
     });
 }
 
@@ -536,6 +488,7 @@ const editPackage = (id) => {
     document.getElementById("pckGradient2").value = packageList[index].gradient[1];
 
     document.getElementById("pckSubmit").addEventListener('click', () => {
+
         packageList[index].name = document.getElementById("pckName").value;
         packageList[index].skip = document.getElementById("pckSkip").value;
         packageList[index].fasting_start = document.getElementById("pckFastingStart").value;
@@ -549,7 +502,8 @@ const editPackage = (id) => {
         packageList[index].gradient[1] = document.getElementById("pckGradient2").value;
 
         putData(packageList[index], apiUrls.updatePck);
-        commitRenderPck(packageList);
+
+        renderPackages(packageList);
     });
 }
 
@@ -559,21 +513,50 @@ const editPackage = (id) => {
 let corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
 
-async function getAllData(endpoint, dataType) {
+async function getPckData(endpoint) {
     try {
         let response = await fetch(`${corsProxy}https://morning-hamlet-41477.herokuapp.com/${endpoint}`);
         let data = await response.json();
 
-        if (dataType === "pck") {
-            data.forEach(createPackageList);
+        console.log(data);
 
-            console.log(packageList);
-        } else {
-            data.forEach(createCategoryList);
+        packageList = [];
 
-            console.log(categoryList);
+        data.forEach(createPackageList);
 
-            clearLoader();
+        console.log(packageList);
+
+        elements.container.innerHTML = '';
+
+        renderPckPage(elements.container);
+
+        renderPackages(packageList);
+
+    } catch (err) {
+        alert("Failed to retrieve data from server :(");
+        console.log(err);
+    }
+}
+
+async function getCatData(endpoint, render = true) {
+    try {
+        let response = await fetch(`${corsProxy}https://morning-hamlet-41477.herokuapp.com/${endpoint}`);
+        let data = await response.json();
+
+        console.log(data);
+
+        categoryList = [];
+
+        data.forEach(createCategoryList);
+
+        console.log(categoryList);
+
+        if (render) {
+            elements.container.innerHTML = '';
+
+            renderCatPage(elements.container);
+
+            renderCategory(categoryList);
         }
 
     } catch (err) {
@@ -582,7 +565,8 @@ async function getAllData(endpoint, dataType) {
     }
 }
 
-const postData = (content, endpoint) => {
+
+const postPckData = (content, endpoint) => {
     const postMethod = {
         method: 'POST',
         headers: {
@@ -591,12 +575,41 @@ const postData = (content, endpoint) => {
         body: JSON.stringify(content)
     }
 
+    addLoader();
+
     console.log(postMethod);
 
     fetch(`${corsProxy}https://morning-hamlet-41477.herokuapp.com/${endpoint}`, postMethod)
         .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
+        .then(data => {
+            console.log(data);
+
+            getPckData(apiUrls.getAllPck);
+
+        }).catch(err => console.log(err));
+}
+
+const postCatData = (content, endpoint) => {
+    const postMethod = {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify(content)
+    }
+
+    addLoader();
+
+    console.log(postMethod);
+
+    fetch(`${corsProxy}https://morning-hamlet-41477.herokuapp.com/${endpoint}`, postMethod)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+
+            getCatData(apiUrls.getAllCat);
+
+        }).catch(err => console.log(err));
 }
 
 const putData = (content, endpoint) => {
@@ -616,7 +629,7 @@ const putData = (content, endpoint) => {
         .catch(err => console.log(err));
 }
 
-const deleteData = (id, endpoint) => {
+const deleteData = (id, endpoint, catLoad = false) => {
     const deleteMethod = {
         method: 'DELETE',
         headers: {
@@ -624,10 +637,15 @@ const deleteData = (id, endpoint) => {
         },
     }
 
+    console.log(deleteMethod);
+
     fetch(`${corsProxy}https://morning-hamlet-41477.herokuapp.com/${endpoint}/${id}`, deleteMethod)
         .then(response => response.json())
         .then(data => {
             console.log(data);
+            if (catLoad) {
+                getCatData(apiUrls.getAllCat, false);
+            }
         })
         .catch(err => console.log(err));
 }
@@ -636,18 +654,31 @@ const init = () => {
 
     addLoader();
 
-    getAllData(apiUrls.getAllPck, "pck");
+    getCatData(apiUrls.getAllCat, false);
 
-    getAllData(apiUrls.getAllCat, "cat");
+    getPckData(apiUrls.getAllPck);
 
 }
 
 init();
 
 elements.navCat.addEventListener('click', function() {
+
     renderCatPage(elements.container);
+    renderCategory(categoryList);
+
 });
 
 elements.navPck.addEventListener('click', function() {
+
     renderPckPage(elements.container);
+    renderPackages(packageList);
+
+});
+
+elements.HomePg.addEventListener('click', function() {
+
+    renderPckPage(elements.container);
+    renderPackages(packageList);
+
 });
