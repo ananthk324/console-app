@@ -1,0 +1,107 @@
+GET ALL PACKAGES
+
+method : get 
+url : /package
+
+GET ALL CATEGORIES
+
+method : get
+url : /category
+
+CREATE PACKAGE 
+
+method : post 
+url : /package
+param : json
+
+{
+	"pckId": "1",
+	"name": "16-9 fasting",
+	"skip": "skip dinner",
+	"fasting_start": 16,
+	"fasting_end": 9,
+	"type": "hour",
+	"fasting_hrs": 16,
+	"eating_hrs": 8,
+	"description": "description",
+	"img": "http://fstream.in/wellness/Packs/w-keto-diet-p.png",
+	"gradient": ["#fff", "#000"]
+}
+
+UPDATE PACKAGE
+
+method : PUT 
+url : /package
+param : json
+
+{
+	"pckId": "1",
+	"name": "16-9 fasting",
+	"skip": "skip dinner",
+	"fasting_start": 16,
+	"fasting_end": 9,
+	"type": "hour",
+	"fasting_hrs": 16,
+	"eating_hrs": 8,
+	"description": "description",
+	"img": "http://fstream.in/wellness/Packs/w-keto-diet-p.png",
+	"gradient": ["#fff", "#000"]
+}
+
+DELETE PACKAGE 
+
+method : delete
+url : /package/{id}
+
+CREATE CATEGORY
+
+method : post
+url : /category
+param : json
+
+{
+    "catId":"",
+    "name": "intermediate",
+    "img": "",
+    "packages": [
+       {
+         "pckId":3
+       },
+       {
+         "pckId":2
+       }
+    ]
+}
+
+UPDATE CATEGORY
+
+method :put
+url :/category
+param:json
+
+
+{
+    "catId":"2",
+    "name": "intermediate",
+     "img": "",
+     "packages": [
+       {
+        "pckId":3
+       },
+       {
+         "pckId":2
+       }
+    ]
+}
+
+DELETE CATEGORY 
+
+method : delete 
+url : /category/{id}
+
+
+
+
+
+
+
