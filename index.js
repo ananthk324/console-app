@@ -152,8 +152,18 @@ const elements = {
     container: document.querySelector('.container'),
     navCat: document.getElementById("nav-cat"),
     navPck: document.getElementById("nav-pck"),
-    HomePg: document.getElementById("home-pg")
+    homePg: document.getElementById("home-pg")
 };
+
+tokenVal = document.getElementById("accesstoken").value;
+
+const getMethod = {
+    method: 'GET',
+    headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        'token': tokenVal
+    },
+}
 
 const addLoader = () => {
     elements.container.innerHTML = '';
@@ -348,9 +358,10 @@ const createPackageList = (dataInput) => {
 const getCategoryInput = () => {
 
     let categoryInput = {
+        catId: "",
         name: document.getElementById("catName").value,
         img: document.getElementById("catImgUrl").value,
-        packages: 0 || readDropDownVal()
+        packages: readDropDownVal()
     };
 
     postCatData(categoryInput, apiUrls.newCat);
@@ -372,6 +383,7 @@ const readDropDownVal = () => {
 const getPackageInput = () => {
 
     let packageInput = {
+        pckId: "",
         name: document.getElementById("pckName").value,
         skip: document.getElementById("pckSkip").value,
         fasting_start: document.getElementById("pckFastingStart").value,
@@ -514,10 +526,12 @@ let corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
 
 async function getPckData(endpoint) {
+
     try {
-        let response = await fetch(`${corsProxy}https://morning-hamlet-41477.herokuapp.com/${endpoint}`);
+        let response = await fetch(`${corsProxy}https://morning-hamlet-41477.herokuapp.com/${endpoint}`, getMethod);
         let data = await response.json();
 
+        console.log(getMethod);
         console.log(data);
 
         packageList = [];
@@ -539,10 +553,12 @@ async function getPckData(endpoint) {
 }
 
 async function getCatData(endpoint, render = true) {
+
     try {
-        let response = await fetch(`${corsProxy}https://morning-hamlet-41477.herokuapp.com/${endpoint}`);
+        let response = await fetch(`${corsProxy}https://morning-hamlet-41477.herokuapp.com/${endpoint}`, getMethod);
         let data = await response.json();
 
+        console.log(getMethod);
         console.log(data);
 
         categoryList = [];
@@ -570,7 +586,8 @@ const postPckData = (content, endpoint) => {
     const postMethod = {
         method: 'POST',
         headers: {
-            'Content-type': 'application/json; charset=UTF-8'
+            'Content-type': 'application/json; charset=UTF-8',
+            'token': tokenVal
         },
         body: JSON.stringify(content)
     }
@@ -593,7 +610,8 @@ const postCatData = (content, endpoint) => {
     const postMethod = {
         method: 'POST',
         headers: {
-            'Content-type': 'application/json; charset=UTF-8'
+            'Content-type': 'application/json; charset=UTF-8',
+            'token': tokenVal
         },
         body: JSON.stringify(content)
     }
@@ -616,7 +634,8 @@ const putData = (content, endpoint) => {
     const putMethod = {
         method: 'PUT',
         headers: {
-            'Content-type': 'application/json; charset=UTF-8'
+            'Content-type': 'application/json; charset=UTF-8',
+            'token': tokenVal
         },
         body: JSON.stringify(content)
     }
@@ -633,7 +652,8 @@ const deleteData = (id, endpoint, catLoad = false) => {
     const deleteMethod = {
         method: 'DELETE',
         headers: {
-            'Content-type': 'application/json; charset=UTF-8'
+            'Content-type': 'application/json; charset=UTF-8',
+            'token': tokenVal
         },
     }
 
@@ -676,7 +696,7 @@ elements.navPck.addEventListener('click', function() {
 
 });
 
-elements.HomePg.addEventListener('click', function() {
+elements.homePg.addEventListener('click', function() {
 
     renderPckPage(elements.container);
     renderPackages(packageList);
