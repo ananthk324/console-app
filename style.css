@@ -30,3 +30,8 @@ h3 {
     margin-top: 0;
     margin-bottom: 0;
 }
+
+.dropdown-menu {
+    max-height: 300px;
+    overflow: scroll;
+}
