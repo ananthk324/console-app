@@ -1,5 +1,12 @@
 .card {
     display: block;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+.card.input {
+    display: block;
     margin-bottom: 10px;
     margin-top: 10px;
     border-radius: 10px;
@@ -15,13 +22,76 @@ p {
     margin-block-end: 5px;
 }
 
+.card-body {
+    padding-top: 5px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.card-body.app {
+    padding-left: 20px;
+}
+
+.card-body.input {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 .card-title {
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
+.card-header {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    border-bottom: 0px;
+}
+
+.col-md-9 {
+    padding-left: 15px;
+}
+
+.col-md-3 {
+    max-width: 250px;
+    max-height: 250px;
+}
+
+.card-footer {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
+    border-top: 0px;
+    background-color: inherit;
+}
+
+.card-footer.app {
+    padding-top: 5px;
+}
+
+.figure {
+    margin-top: 10px;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+img {
+    max-width: 80%;
+    max-height: 80%;
+    box-shadow: 5px 5px 7px rgb(197, 195, 195);
+}
+
 .row {
-    margin-bottom: 5px;
+    margin-bottom: 7px;
 }
 
 h3 {
@@ -34,4 +104,59 @@ h3 {
 .dropdown-menu {
     max-height: 300px;
     overflow: scroll;
+}
+
+.input-group-prepend {
+    text-align: center;
+    width: 120px;
+    height: 38px;
+}
+
+.input-group-text {
+    display: inline-block;
+    width: 120px;
+    height: 38px;
+}
+
+.input-group-prepend.app {
+    text-align: center;
+    width: 170px;
+    height: 38px;
+}
+
+.input-group-text.app {
+    display: inline-block;
+    width: 170px;
+    height: 38px;
+}
+
+.input-group-prepend.button {
+    width: auto;
+    height: auto;
+}
+
+@media (max-width:800px) {
+    .input-group.col-md-6,
+    .input-group.col-md-5,
+    .input-group.col-md-4,
+    .input-group.col-md-3 {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    .packages,
+    .apps,
+    .categories {
+        padding: 1rem 1rem !important;
+    }
+    .col-md-9 {
+        border-left: 0px !important;
+        padding-top: 10px;
+        border-top: 1px solid #c0c0c0;
+    }
+    .col-md-3 {
+        padding-left: 0px;
+    }
+    .card-header {
+        padding-left: 20px;
+    }
 }

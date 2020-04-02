@@ -1,32 +1,33 @@
 // Markups to be rendered
 
-const appMarkup = `<div class="apps" style="padding: 2rem 2rem">
+const appMarkup = `<div class="apps" style="padding: 2rem 6rem">
     <div class="app-btn-ctnr">
         <h3 style="display: inline">Apps</h3>
         <button type="button" class="btn btn-outline-primary" id="new-app-btn">New App <i class="fa fa-plus" aria-hidden="true"></i></button>
     </div>
+    <hr>
         <div class="app-container">
         
         </div>
     </div>`;
 
-const appInputMarkup = `<div class="card w-80">
-    <div class="card-body">
+const appInputMarkup = `<div class="card w-80 input">
+    <div class="card-body input">
     <div class="row">
-        <div class="input-group col-md-4">
-            <div class="input-group-prepend">
-                <span class="input-group-text">App Name</span>
+        <div class="input-group col-md-4" style="padding-left: 15px; padding-right: 7.5px;">
+            <div class="input-group-prepend app">
+                <span class="input-group-text app">App Name</span>
             </div>
             <input type="text" class="form-control" placeholder="Fasting App" id="appName" required>
         </div>
-        <div class="input-group col-md-5">
-            <div class="input-group-prepend">
-                <span class="input-group-text">App Package Name</span>
+        <div class="input-group col-md-5" style="padding-left: 7.5px; padding-right: 7.5px;">
+            <div class="input-group-prepend app">
+                <span class="input-group-text app">App Package Name</span>
             </div>
             <input type="text" class="form-control" placeholder="com.riafy.fasting" id="appPckName" required>
         </div>
-        <div class="input-group col-md-3">    
-            <div class="input-group-prepend">
+        <div class="input-group col-md-3" style="padding-left: 7.5px; padding-right: 15px;">    
+            <div class="input-group-prepend button">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Select Categories</button>
                     <div class="dropdown-menu" multiple>
@@ -43,27 +44,28 @@ const appInputMarkup = `<div class="card w-80">
     </div>
     </div>`
 
-const catMarkup = `<div class="categories" style="padding: 2rem 2rem">
+const catMarkup = `<div class="categories" style="padding: 2rem 6rem">
     <div class="cat-btn-ctnr">
         <h3 style="display: inline">Categories</h3>
         <button type="button" class="btn btn-outline-primary" id="new-cat-btn">New Category <i class="fa fa-plus" aria-hidden="true"></i></button>
     </div>
+    <hr>
         <div class="category-container">
         
         </div>
     </div>`;
 
-const catInputMarkup = `<div class="card w-80">
-    <div class="card-body">
+const catInputMarkup = `<div class="card w-80 input">
+    <div class="card-body input">
     <div class="row">
-        <div class="input-group col-md-6">
+        <div class="input-group col-md-6" style="padding-left: 15px; padding-right: 7.5px;">
             <div class="input-group-prepend">
                 <span class="input-group-text">Name</span>
             </div>
             <input type="text" class="form-control" placeholder="Beginner" id="catName" required>
         </div>
-        <div class="input-group col-md-6">    
-            <div class="input-group-prepend">
+        <div class="input-group col-md-6" style="padding-left: 7.5px; padding-right: 15px;">    
+            <div class="input-group-prepend button">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Select Packages</button>
                     <div class="dropdown-menu" multiple>
@@ -74,7 +76,7 @@ const catInputMarkup = `<div class="card w-80">
     </div>
 
     <div class="row">
-        <div class="input-group col-md-6">
+        <div class="input-group col-md-6" style="padding-left: 15px; padding-right: 7.5px;">
             <div class="input-group-prepend">
                 <span class="input-group-text">Image URL</span>
             </div>
@@ -90,97 +92,101 @@ const catInputMarkup = `<div class="card w-80">
     </div>`
 
 
-const pckMarkup = `<div class="packages" style="padding: 2rem 2rem">
+const pckMarkup = `<div class="packages" style="padding: 2rem 6rem">
     <div class="pck-btn-ctnr">
         <h3 style="display: inline">Packages</h3>
         <button type="button" class="btn btn-outline-primary" id="new-pck-btn">New Package <i class="fa fa-plus" aria-hidden="true"></i></button>
     </div>
+    <hr>
         <div class="package-container">
 
         </div>
     </div>`;
 
-const pckInputMarkup = `<div class="card w-80">
-<div class="card-body">
-<div class="row">
-    <div class="input-group col-md-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Name</span>
+const pckInputMarkup = `<div class="card w-80 input">
+    <div class="card-body input">
+    <div class="row">
+        <div class="input-group col-md-4" style="padding-left: 15px; padding-right: 7.5px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Name</span>
+            </div>
+            <input type="text" class="form-control" placeholder="16-8 fasting dinner" id="pckName" required>
         </div>
-        <input type="text" class="form-control" placeholder="16-8 fasting dinner" id="pckName" required>
-    </div>
-    <div class="input-group col-md-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Skip</span>
+        <div class="input-group col-md-4" style="padding-left: 7.5px; padding-right: 7.5px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Skip</span>
+            </div>
+            <input type="text" class="form-control" placeholder="skip dinner" id="pckSkip" required>
         </div>
-        <input type="text" class="form-control" placeholder="skip dinner" id="pckSkip" required>
-    </div>
-    <div class="input-group col-md-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Fasting Start</span>
+        <div class="input-group col-md-4" style="padding-left: 7.5px; padding-right: 15px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Type</span>
+            </div>
+            <input type="text" class="form-control" placeholder="hour" id="pckType" required>
         </div>
-        <input type="number" class="form-control" placeholder="16" id="pckFastingStart" required>
     </div>
-    <div class="input-group col-md-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Fasting End</span>
+    
+    <div class="row">
+        <div class="input-group col-md-4" style="padding-left: 15px; padding-right: 7.5px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Fasting Start</span>
+            </div>
+            <input type="number" class="form-control" placeholder="16" id="pckFastingStart" required>
         </div>
-        <input type="number" class="form-control" placeholder="8" id="pckFastingEnd" required>
-    </div>
-</div>
-
-<div class="row">
-    <div class="input-group col-md-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Type</span>
+        <div class="input-group col-md-4" style="padding-left: 7.5px; padding-right: 7.5px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Fasting End</span>
+            </div>
+            <input type="number" class="form-control" placeholder="8" id="pckFastingEnd" required>
+            </div>
+        <div class="input-group col-md-4" style="padding-left: 7.5px; padding-right: 15px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Fasting Hours</span>
+            </div>
+            <input type="number" class="form-control" placeholder="16" id="pckFastingHrs" required>
         </div>
-        <input type="text" class="form-control" placeholder="hour" id="pckType" required>
     </div>
-    <div class="input-group col-md-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Description</span>
+    
+    <div class="row">
+        <div class="input-group col-md-4" style="padding-left: 15px; padding-right: 7.5px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Eating Hours</span>
+            </div>
+            <input type="number" class="form-control" placeholder="8" id="pckEatingHrs" required>
         </div>
-        <input type="text" class="form-control" placeholder="description" id="pckDesc" required>
-    </div>
-    <div class="input-group col-md-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Fasting Hours</span>
+        <div class="input-group col-md-4" style="padding-left: 7.5px; padding-right: 7.5px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Gradient 1</span>
+            </div>
+            <input type="text" class="form-control" placeholder="#fff" id="pckGradient1" required>
         </div>
-        <input type="number" class="form-control" placeholder="16" id="pckFastingHrs" required>
-    </div>
-    <div class="input-group col-md-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Eating Hours</span>
+        <div class="input-group col-md-4" style="padding-left: 7.5px; padding-right: 15px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Gradient 2</span>
+            </div>
+            <input type="text" class="form-control" placeholder="#000" id="pckGradient2" required>
         </div>
-        <input type="number" class="form-control" placeholder="8" id="pckEatingHrs" required>
     </div>
-</div>
-
-<div class="row">
-    <div class="input-group col-md-6">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Image URL</span>
+    
+    <div class="row">
+        <div class="input-group col-md-6" style="padding-left: 15px; padding-right: 7.5px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Description</span>
+            </div>
+            <input type="text" class="form-control" placeholder="description" id="pckDesc" required>
         </div>
-        <input type="text" class="form-control" placeholder="https://www.example_url.com/image.jpg/" id="pckImgUrl" required>
-    </div>
-    <div class="input-group col-md-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Gradient 1</span>
+        <div class="input-group col-md-6" style="padding-left: 7.5px; padding-right: 15px;">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Image URL</span>
+            </div>
+            <input type="text" class="form-control" placeholder="https://www.example_url.com/image.jpg/" id="pckImgUrl" required>
         </div>
-        <input type="text" class="form-control" placeholder="#fff" id="pckGradient1" required>
     </div>
-    <div class="input-group col-md-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Gradient 2</span>
-        </div>
-        <input type="text" class="form-control" placeholder="#000" id="pckGradient2" required>
+    
+    <div>
+        <button class="btn-primary btn-sm" id="pckSubmit">Submit</button>
     </div>
-</div>
-
-<div>
-    <button class="btn-primary btn-sm" id="pckSubmit">Submit</button>
-</div>
-</div>
+    </div>
 </div>`;
 
 // Loading animation markup
@@ -232,7 +238,6 @@ let packageList = [],
     appList = [];
 
 /*
-
     View
 
     This section renders the markups and data on navigation button clicks
@@ -342,14 +347,26 @@ const renderPackages = (pckList) => {
 const renderEachPck = (pck) => {
 
     const pckDataMarkup = `<div class="card card-dis w-80">
+    <div class="card-header"><b>Package Name: ${pck.name}</b></div>
     <div class="card-body">
-        <p class="card-title"><b>Package Name: ${pck.name}</b></p>
-        <p>Skip: ${pck.skip}, Type: ${pck.type}</p>
-        <p>Fasting Start: ${pck.fasting_start}, Fasting End: ${pck.fasting_end}</p>
-        <p>Fasting Hrs: ${pck.fasting_hrs}, Eating Hrs: ${pck.eating_hrs}</p>
-        <p>Description: ${pck.description}</p>
-        <p>Image URL: ${pck.img}</p>
-        <p>Gradient 1: ${pck.gradient[0]}, Gradient 2: ${pck.gradient[1]}</p>
+        <div class="row">
+            <div class="col-md-3" align="center">
+            <figure class="figure">
+                <img src="${pck.img}" class="figure-img img-fluid rounded" width="200px" height="200px" alt="image" onError="this.src='./src/css/plc.jpg'">
+            </figure>                
+            </div>
+
+            <div class="col-md-9" style="border-left: 1px solid #c0c0c0;">
+                <p>Skip: ${pck.skip}, Type: ${pck.type}</p>
+                <p>Fasting Start: ${pck.fasting_start}, Fasting End: ${pck.fasting_end}</p>
+                <p>Fasting Hrs: ${pck.fasting_hrs}, Eating Hrs: ${pck.eating_hrs}</p>
+                <p>Description: ${pck.description}</p>
+                <p>Image URL: ${pck.img}</p>
+                <p>Gradient 1: ${pck.gradient[0]}, Gradient 2: ${pck.gradient[1]}</p>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
         <button type="button" class="btn btn-sm btn-outline-primary" onclick="editPackage(${pck.pckId})"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
         <button type="button" class="btn btn-sm btn-outline-danger" onclick="deletePackage(${pck.pckId})"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
     </div>
@@ -382,10 +399,22 @@ const renderEachCat = (cat) => {
     }
 
     const catDataMarkup = `<div class="card card-dis w-80">
+    <div class="card-header"><b>Category Name: ${cat.name}</b></div>
     <div class="card-body">
-        <p class="card-title"><b>Category Name: ${cat.name}</b></p>
-        <p>Image URL: ${cat.img}</p>
-        <p>Packages Included: ${packageNames}</p>
+        <div class="row">
+            <div class="col-md-3" align="center">
+            <figure class="figure">
+                <img src="${cat.img}" class="figure-img img-fluid rounded" width="200px" height="200px" alt="image" onError="this.src='./src/css/plc.jpg'">
+            </figure>                
+            </div>
+
+            <div class="col-md-9" style="border-left: 1px solid #c0c0c0;">
+                <p>Packages Included: ${packageNames}</p>
+                <p>Image URL: ${cat.img}</p>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
         <button type="button" class="btn btn-sm btn-outline-primary" onclick="editCategory(${cat.catId})"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
         <button type="button" class="btn btn-sm btn-outline-danger" onclick="deleteCategory(${cat.catId})"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
     </div>
@@ -418,10 +447,12 @@ const renderEachApp = (app) => {
     }
 
     const appDataMarkup = `<div class="card card-dis w-80">
-    <div class="card-body">
-        <p class="card-title"><b>App Name: ${app.name}</b></p>
+    <div class="card-header"><b>App Name: ${app.name}</b></div>
+    <div class="card-body app">
         <p>App Package Name: ${app.appPckName}</p>
         <p>Categories Included: ${categoryNames}</p>
+    </div>
+    <div class="card-footer app">
         <button type="button" class="btn btn-sm btn-outline-primary" onclick="editApp(${app.appId})"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
         <button type="button" class="btn btn-sm btn-outline-danger" onclick="deleteApp(${app.appId})"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
     </div>
@@ -620,8 +651,10 @@ const editApp = (id) => {
     document.getElementById("appName").value = appList[index].name;
     document.getElementById("appPckName").value = appList[index].appPckName;
 
-    for (let j = 0; j < selCatIds.length; j++) {
-        document.getElementById(`${selCatIds[j]}`).checked = true;
+    if (appList[index].categories.length >= 1 && appList[index].categories[0] !== "") {
+        for (let j = 0; j < selCatIds.length; j++) {
+            document.getElementById(`${selCatIds[j]}`).checked = true;
+        }
     }
 
     document.getElementById("appSubmit").addEventListener('click', () => {
@@ -659,8 +692,10 @@ const editCategory = (id) => {
     document.getElementById("catName").value = categoryList[index].name;
     document.getElementById("catImgUrl").value = categoryList[index].img;
 
-    for (let j = 0; j < selPckIds.length; j++) {
-        document.getElementById(`${selPckIds[j]}`).checked = true;
+    if (categoryList[index].packages.length >= 1 && categoryList[index].packages[0] !== "") {
+        for (let j = 0; j < selPckIds.length; j++) {
+            document.getElementById(`${selPckIds[j]}`).checked = true;
+        }
     }
 
     document.getElementById("catSubmit").addEventListener('click', () => {
@@ -725,38 +760,38 @@ const editPackage = (id) => {
 let corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
 // API URL
+let API_URL = "https://morning-hamlet-41477.herokuapp.com";
 
-let appUrl = 'https://morning-hamlet-41477.herokuapp.com';
+
 
 // URL to redirect to login page
-let redirectUrl = 'https://morning-hamlet-41477.herokuapp.com/client/logout.php';
+let redirectUrl = "https://morning-hamlet-41477.herokuapp.com/client/logout.php";
 
 // Read token value
 let token = document.getElementById("accesstoken").value;
 
 const invalidResponse = (disAlert = true) => {
-    token = null;
+    token = "";
     if (disAlert) {
         alert("Session timeout or invalid token. Please Login again.");
     }
     window.location.replace(redirectUrl);
 }
 
-// Defining the HTTP request for GET method
-
-const getMethod = {
-    method: 'GET',
-    headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        'token': token
-    },
-}
-
 // GET API call
 
 async function getData(endpoint, dataType, render = false, disAlert = true) {
+
+    const getMethod = {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            'token': token
+        },
+    }
+
     try {
-        let response = await fetch(`${appUrl}/${endpoint}`, getMethod);
+        let response = await fetch(`${API_URL}/${endpoint}`, getMethod);
         let data = await response.json();
         let httpStatus = response.status;
 
@@ -797,14 +832,16 @@ async function getData(endpoint, dataType, render = false, disAlert = true) {
             invalidResponse(disAlert);
         }
     } catch (err) {
-        alert("Failed to retrieve data from server :(");
+        if (disAlert) {
+            alert("Failed to retrieve data from server :(");
+        }
         console.log(err);
     }
 }
 
 // POST API Call
 
-const postData = (endpoint, dataType, content) => {
+async function postData(endpoint, dataType, content) {
 
     const postMethod = {
         method: 'POST',
@@ -818,15 +855,15 @@ const postData = (endpoint, dataType, content) => {
     addLoader();
     console.log(postMethod);
 
-    fetch(`${appUrl}/${endpoint}`, postMethod)
-        .then(response => response.json())
-        .then(() => {
-            if (response.status === 401) {
-                invalidResponse();
-            }
-        })
-        .then(data => {
+    try {
+        let response = await fetch(`${API_URL}/${endpoint}`, postMethod);
+        let data = await response.json();
+        let httpStatus = response.status;
+
+        if (httpStatus !== 401) {
+
             console.log(data);
+
             if (dataType === "pck") {
                 getData(apiUrls.getAllPck, "pck", false);
             } else if (dataType === "cat") {
@@ -834,12 +871,18 @@ const postData = (endpoint, dataType, content) => {
             } else {
                 getData(apiUrls.getAllApp, "app", true);
             }
-        }).catch(err => console.log(err));
+
+        } else {
+            invalidResponse();
+        }
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 //  PUT API Call
 
-const putData = (content, endpoint) => {
+async function putData(content, endpoint) {
     const putMethod = {
         method: 'PUT',
         headers: {
@@ -851,20 +894,24 @@ const putData = (content, endpoint) => {
 
     console.log(putMethod);
 
-    fetch(`${appUrl}/${endpoint}`, putMethod)
-        .then(response => response.json())
-        .then(() => {
-            if (response.status === 401) {
-                invalidResponse();
-            }
-        })
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
+    try {
+        let response = await fetch(`${API_URL}/${endpoint}`, putMethod);
+        let data = await response.json();
+        let httpStatus = response.status;
+
+        if (httpStatus !== 401) {
+            console.log(data);
+        } else {
+            invalidResponse();
+        }
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 // DELETE API Call
 
-const deleteData = (id, endpoint, load = false) => {
+async function deleteData(id, endpoint, load = false) {
 
     const deleteMethod = {
         method: 'DELETE',
@@ -876,21 +923,23 @@ const deleteData = (id, endpoint, load = false) => {
 
     console.log(deleteMethod);
 
-    fetch(`${appUrl}/${endpoint}/${id}`, deleteMethod)
-        .then(response => response.json())
-        .then(() => {
-            if (response.status === 401) {
-                invalidResponse();
-            }
-        })
-        .then(data => {
+    try {
+        let response = fetch(`${API_URL}/${endpoint}/${id}`, deleteMethod);
+        let data = await response.json();
+        let httpStatus = response.status;
+
+        if (httpStatus !== 401) {
             console.log(data);
             if (load) {
-                getData(apiUrls.getAllCat, "cat", false)
-                    .then(getData(apiUrls.getAllApp, "app", false));
+                getData(apiUrls.getAllCat, "cat", false);
+                getData(apiUrls.getAllApp, "app", false);
             }
-        })
-        .catch(err => console.log(err));
+        } else {
+            invalidResponse();
+        }
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 // Function to initialize, and read Data from server
